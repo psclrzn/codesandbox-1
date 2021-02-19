@@ -1,0 +1,52 @@
+<!--
+  Welcome to Tailwind Play, the official Tailwind CSS playground!
+
+  Everything here works just like it does when you're running Tailwind locally
+  with a real build pipeline. You can customize your config file, use features
+  like `@apply`, or even add third-party plugins.
+
+  Feel free to play with this example if you're just learning, or trash it and
+  start from scratch if you know enough to be dangerous. Have fun!
+-->
+<div
+  class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12"
+>
+  <div class="flex w-full">
+    <div class="flex-1 w-1/2 h-full p-4 m-4">
+      <ng-container *ngFor="let section of data.data">
+        <div class="p-4">
+          <div>
+            <input
+              type="checkbox"
+              [(ngModel)]="section.isChecked"
+              (change)="onChangeParent(section.id, $event.target.checked)"
+            />
+            <label class="pl-2">{{section.label}}</label>
+          </div>
+          <ul class="pl-3">
+            <li *ngFor="let element of section.sectionElements">
+              <input
+                type="checkbox"
+                [(ngModel)]="element.isChecked"
+                (click)="onClickChild(element.id, $event)"
+              />
+              <label class="pl-2">{{element.label}}</label>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
+    </div>
+    <div class="flex-1 w-1/2 h-full p-4 m-4">
+      <ul>
+        <li *ngFor="let item of checkedData.data">
+          <input
+            type="checkbox"
+            [(ngModel)]="item.isChecked"
+            (change)="onChangeSelected(item.id, $event.target.checked)"
+          />
+          <label class="pl-2">{{item.label}}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
